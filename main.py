@@ -50,7 +50,7 @@ class QAP:
     def is_exists_mult_gate(self, leaf_left, leaf_right):
         return self.dict_mult_gates_rev.get(f'{leaf_left}:{leaf_right}') is not None
     
-    def get_leafs_into_func_by_index(self, str_func, ind):
+    def get_leafs_from_func_by_index(self, str_func, ind):
         leaf_left, leaf_right = '', ''
         for i in range(ind, 0, -1):
             if str_func[i-1] != '+' and str_func[i-1] != '*':
@@ -72,7 +72,7 @@ class QAP:
             if ind_mult == -1:
                 isTrue = False
             else:
-                leafs = self.get_leafs_into_func_by_index(str_func, ind_mult)
+                leafs = self.get_leafs_from_func_by_index(str_func, ind_mult)
                 print(leafs)
                 print(ind_mult - len(leafs[0]), ind_mult + len(leafs[1]) - len(leafs[0]) + 1)
                 str_func = str_func.replace(leafs[0] + '*' + leafs[1], 'q', 1)
